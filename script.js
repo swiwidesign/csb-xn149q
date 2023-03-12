@@ -19,7 +19,7 @@ function raf(time) {
 
 requestAnimationFrame(raf);
 
-// generic
+// generic code
 gsap.registerPlugin(ScrollTrigger);
 
 // apply parallax effect to any element with a data-speed attribute
