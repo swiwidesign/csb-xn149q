@@ -4,10 +4,10 @@ window.addEventListener("DOMContentLoaded", (event) => {
   const lenis = new Lenis({
     duration: 1.2,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // https://www.desmos.com/calculator/brs54l4xou
-    direction: "vertical", // vertical, horizontal
-    gestureDirection: "vertical", // vertical, horizontal, both
-    smooth: true,
-    mouseMultiplier: 1,
+    orientation: "vertical", // vertical, horizontal
+    gestureOrientation: "vertical", // vertical, horizontal, both
+    smoothWheel: true,
+    wheelMultiplier: 1,
     smoothTouch: false,
     touchMultiplier: 2,
     infinite: false
@@ -43,6 +43,9 @@ window.addEventListener("DOMContentLoaded", (event) => {
       }
     });
   });
+  //LANDING
+  //services image change
+
   //FOOTER
   //footer marquee
   let footerMarquee = gsap.timeline({ repeat: -1 });
@@ -63,10 +66,12 @@ window.addEventListener("DOMContentLoaded", (event) => {
     paused: true,
     marginTop: "0%",
     stagger: 0.2,
-    ease: "ease"
+    ease: "elastic.out(1, 0.6)",
+    duration: 2
   });
 
   instagram.addEventListener("mouseenter", () => instaAni.play());
   instagram.addEventListener("mouseleave", () => instaAni.reverse());
+
   //END CODE
 });
