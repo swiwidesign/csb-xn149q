@@ -45,6 +45,30 @@ window.addEventListener("DOMContentLoaded", (event) => {
   });
   //LANDING
   //services image change
+  let childTriggers = $(".sticky-track").find(".services_text-wrapper");
+  let childTargets = $(".sticky-track").find("[services-image]");
+  // switch active class
+  function makeItemActive(index) {
+    childTriggers.removeClass("is-active");
+    childTargets.removeClass("is-active");
+    childTriggers.eq(index).addClass("is-active");
+    childTargets.eq(index).addClass("is-active");
+  }
+  makeItemActive(0);
+  // create triggers
+  childTriggers.each(function (index) {
+    ScrollTrigger.create({
+      trigger: $(this),
+      start: "top center",
+      end: "bottom center",
+      onToggle: (isActive) => {
+        if (isActive) {
+          makeItemActive(index);
+        }
+      }
+    });
+  });
+  //service image last enlarge
 
   //FOOTER
   //footer marquee
