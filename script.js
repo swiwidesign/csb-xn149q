@@ -19,6 +19,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
   }
 
   requestAnimationFrame(raf);
+  // PAGE INTROS
 
   // GENERAL CODE
   gsap.registerPlugin(ScrollTrigger);
@@ -50,8 +51,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
     .timeline({
       scrollTrigger: {
         trigger: "[marquee]",
-        start: "top bottom", // when the top of the trigger hits the top of the viewport
-        end: "bottom top", // end after scrolling 500px beyond the start
+        start: "top bottom",
+        end: "bottom top",
         scrub: 2,
         ease: "none"
       }
@@ -75,6 +76,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
       trigger: $(this),
       start: "top center",
       end: "bottom center",
+      fastScrollEnd: true,
+      invalidateOnRefresh: true,
       onToggle: (isActive) => {
         if (isActive) {
           makeItemActive(index);
@@ -89,11 +92,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
         trigger: "[enlarge-trigger]",
         start: "bottom center",
         endTrigger: "[enlarge-endtrigger]",
-        end: "bottom bottom",
+        end: "bottom +=150%",
         scrub: 2,
         ease: "none",
-        defer: true,
-        lazy: true
+        fastScrollEnd: true,
+        invalidateOnRefresh: true
       }
     })
     .to("[enlarge]", { width: "100%", height: "100vh" })
@@ -109,11 +112,10 @@ window.addEventListener("DOMContentLoaded", (event) => {
       scrollTrigger: {
         trigger: "[services-enlarge-trigger]",
         start: "top top",
-        end: "bottom bottom",
+        end: "bottom +=150%",
         scrub: 1,
         ease: "none",
-        defer: true,
-        lazy: true
+        fastScrollEnd: true
       }
     })
     .to(
