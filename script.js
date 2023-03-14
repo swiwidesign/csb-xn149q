@@ -20,7 +20,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
   requestAnimationFrame(raf);
 
-  // GENERIC CODE
+  // GENERAL CODE
   gsap.registerPlugin(ScrollTrigger);
 
   // apply parallax effect to any element with a data-speed attribute
@@ -43,8 +43,22 @@ window.addEventListener("DOMContentLoaded", (event) => {
       }
     });
   });
+
+  //marquee
+  gsap.set("[marquee]", { xPercent: 100 });
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: "[marquee]",
+        start: "top bottom", // when the top of the trigger hits the top of the viewport
+        end: "bottom top", // end after scrolling 500px beyond the start
+        scrub: 2,
+        ease: "none"
+      }
+    })
+    .to("[marquee]", { xPercent: -30 });
   //LANDING
-  //services image change
+  //landing services image change
   let childTriggers = $(".sticky-track").find(".services_text-wrapper");
   let childTargets = $(".sticky-track").find("[services-image]");
   // switch active class
@@ -68,8 +82,49 @@ window.addEventListener("DOMContentLoaded", (event) => {
       }
     });
   });
-  //service image last enlarge
-
+  //landing service image last enlarge
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: "[enlarge-trigger]",
+        start: "bottom center",
+        endTrigger: "[enlarge-endtrigger]",
+        end: "bottom bottom",
+        scrub: 2,
+        ease: "none",
+        defer: true,
+        lazy: true
+      }
+    })
+    .to("[enlarge]", { width: "100%", height: "100vh" })
+    .to(
+      "[enlarge] .image_vertical .image_vertical-height",
+      { paddingTop: "100vh" },
+      "<"
+    );
+  //SERVICES
+  //services image enlarge
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: "[services-enlarge-trigger]",
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 1,
+        ease: "none",
+        defer: true,
+        lazy: true
+      }
+    })
+    .to(
+      "[services-enlarge]",
+      {
+        borderRadius: "0",
+        width: "100%",
+        height: "100vh"
+      },
+      "<"
+    );
   //FOOTER
   //footer marquee
   let footerMarquee = gsap.timeline({ repeat: -1 });
