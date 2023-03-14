@@ -105,6 +105,31 @@ window.addEventListener("DOMContentLoaded", (event) => {
       { paddingTop: "100vh" },
       "<"
     );
+  //SALON
+  //team image
+
+  // select all the .team-image divs
+  let teamImages = document.querySelectorAll("[team-image]");
+
+  // loop through each .team-image div
+  teamImages.forEach((teamImage) => {
+    // select the .image-100 images inside the current .team-image div
+    let images = teamImage.querySelectorAll(".image-100");
+    // create a timeline to animate the images
+    let tl = gsap
+      .timeline({
+        // yes, we can add it to an entire timeline!
+        scrollTrigger: {
+          trigger: teamImage,
+          start: "top center",
+          end: "bottom center",
+          scrub: true,
+          ease: "none"
+        }
+      })
+      .from(images, { display: "none", duration: 0.3, stagger: 0.3 });
+  });
+
   //SERVICES
   //services image enlarge
   gsap
@@ -118,15 +143,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
         fastScrollEnd: true
       }
     })
-    .to(
-      "[services-enlarge]",
-      {
-        borderRadius: "0",
-        width: "100%",
-        height: "100vh"
-      },
-      "<"
-    );
+    .to("[services-enlarge]", {
+      borderRadius: "0",
+      width: "100%",
+      height: "100vh"
+    });
   //FOOTER
   //footer marquee
   let footerMarquee = gsap.timeline({ repeat: -1 });
@@ -154,5 +175,5 @@ window.addEventListener("DOMContentLoaded", (event) => {
   instagram.addEventListener("mouseenter", () => instaAni.play());
   instagram.addEventListener("mouseleave", () => instaAni.reverse());
 
-  //END CODE
+  //FOOTER END
 });
