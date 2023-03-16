@@ -235,8 +235,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
     let tlteam = gsap.timeline({
       scrollTrigger: {
         trigger: childTrigger,
-        start: "center bottom",
-        end: "top top",
+        start: "top 80%",
+        end: "top 10%",
         scrub: true
       }
     });
