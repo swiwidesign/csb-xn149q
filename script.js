@@ -1,5 +1,5 @@
 window.addEventListener("DOMContentLoaded", (event) => {
-  // lenis scroll
+  // LENIS
 
   const lenis = new Lenis({
     duration: 1.2,
@@ -114,7 +114,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
           trigger: '[tlintroscroll="trigger"]',
           start: "top top",
           end: "bottom bottom",
-          scrub: 2
+          scrub: 2,
+          ease: "none"
         }
       })
       .to(lptext, {
@@ -123,7 +124,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
       .to(
         ".image-100.is-1",
         {
-          xPercent: -150,
+          xPercent: -110,
           yPercent: -40,
           scale: 0.8,
           rotation: 0
@@ -144,7 +145,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
       .to(
         ".image-100.is-3",
         {
-          xPercent: -120,
+          xPercent: -150,
           yPercent: 130,
           height: "50%",
           scale: 0.8,
@@ -161,28 +162,24 @@ window.addEventListener("DOMContentLoaded", (event) => {
         "<15%"
       );
   });
-  gsap
-    .matchMedia()
-    .add("(max-width: 991px) and (prefers-reduced-motion: reduce)", () => {
-      //landing intro scroll MOBILE TABLET
-      let tlintroscroll = gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: '[tlintroscroll="trigger"]',
-            start: "top top",
-            end: "bottom bottom",
-            scrub: 2
-          }
-        })
-        .to(lptext, {
-          yPercent: 100
-        })
-        .set(".image-100", {
-          delay: 1,
-          opacity: 0,
-          stagger: { each: 0.2, from: "end" }
-        });
-    });
+  gsap.matchMedia().add("(max-width: 991px)", () => {
+    //landing intro scroll MOBILE TABLET
+    let tlintroscroll = gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: '[tlintroscroll="trigger"]',
+          start: "top top",
+          end: "bottom bottom",
+          scrub: true,
+          ease: "none"
+        }
+      })
+      .set("[hero-images]", {
+        delay: 0.5,
+        opacity: 0,
+        stagger: { each: 1, from: "end" }
+      });
+  });
 
   //landing services image change
   let childTriggers = $(".sticky-track").find(".services_text-wrapper");
@@ -217,7 +214,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         trigger: "[enlarge-trigger]",
         start: "bottom top",
         endTrigger: "[enlarge-endtrigger]",
-        end: "top 150%",
+        end: "top bottom",
         scrub: 2,
         ease: "none",
         fastScrollEnd: true,
