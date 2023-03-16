@@ -19,7 +19,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
   }
 
   requestAnimationFrame(raf);
-  // PAGE INTROS
 
   // GENERAL CODE
   gsap.registerPlugin(ScrollTrigger);
@@ -58,7 +57,99 @@ window.addEventListener("DOMContentLoaded", (event) => {
       }
     })
     .to("[marquee]", { xPercent: -30 });
+  //INTROS
+  //landing intro
+  const lptext = $('[landingintro="text"]');
+  const lpImageWrapper = $('[landingintro="image"]');
+  const lpImage = $(lpImageWrapper).find(".image-100");
+  gsap.set("[landingintro]", { autoAlpha: 1 });
+  let tlintro = gsap
+    .timeline({
+      delay: 1,
+      ease: Power4.easeInOut
+    })
+    .from(
+      lpImageWrapper,
+      {
+        yPercent: -100,
+        duration: 0.4
+      },
+      "<50%"
+    )
+    .from(lpImage, {
+      rotation: 0,
+      duration: 0.6,
+      delay: 0.2
+    });
+
+  //subpage intro
+  gsap.set(".subhero_image-wrapper, .subhero_heading-wrapper", {
+    autoAlpha: 1
+  });
+  let subintro = gsap
+    .timeline({
+      delay: 1.4,
+      ease: Power4.easeInOut
+    })
+    .to(".subhero_image-wrapper", {
+      yPercent: -25,
+      duration: 0.6
+    });
   //LANDING
+  //landing intro scroll
+  let tlintroscroll = gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: '[tlintroscroll="trigger"]',
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 2
+      }
+    })
+    .to(lptext, {
+      yPercent: 100
+    })
+    .to(
+      ".image-100.is-1",
+      {
+        xPercent: -150,
+        yPercent: -40,
+        scale: 0.8,
+        rotation: 0
+      },
+      "<25%"
+    )
+    .to(
+      ".image-100.is-2",
+      {
+        xPercent: 150,
+        yPercent: 15,
+        height: "75%",
+        scale: 0.8,
+        rotation: 0
+      },
+      "<25%"
+    )
+    .to(
+      ".image-100.is-3",
+      {
+        xPercent: -120,
+        yPercent: 130,
+        height: "50%",
+        scale: 0.8,
+        rotation: 0
+      },
+      "<25%"
+    )
+    .to(
+      ".image-100.is-4",
+      {
+        xPercent: 15,
+        rotation: 0
+      },
+      "<15%"
+    );
+
   //landing services image change
   let childTriggers = $(".sticky-track").find(".services_text-wrapper");
   let childTargets = $(".sticky-track").find("[services-image]");
@@ -90,9 +181,9 @@ window.addEventListener("DOMContentLoaded", (event) => {
     .timeline({
       scrollTrigger: {
         trigger: "[enlarge-trigger]",
-        start: "bottom center",
+        start: "bottom top",
         endTrigger: "[enlarge-endtrigger]",
-        end: "bottom +=150%",
+        end: "top 150%",
         scrub: 2,
         ease: "none",
         fastScrollEnd: true,
@@ -107,29 +198,23 @@ window.addEventListener("DOMContentLoaded", (event) => {
     );
   //SALON
   //team image
-
-  // select all the .team-image divs
-  let teamImages = document.querySelectorAll("[team-image]");
-
-  // loop through each .team-image div
-  teamImages.forEach((teamImage) => {
-    // select the .image-100 images inside the current .team-image div
-    let images = teamImage.querySelectorAll(".image-100");
-    // create a timeline to animate the images
-    let tl = gsap
-      .timeline({
-        // yes, we can add it to an entire timeline!
-        scrollTrigger: {
-          trigger: teamImage,
-          start: "top center",
-          end: "bottom center",
-          scrub: true,
-          ease: "none"
-        }
-      })
-      .from(images, { display: "none", duration: 0.3, stagger: 0.3 });
-  });
-
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: "[team-trigger]",
+        start: "top center",
+        end: "bottom center",
+        scrub: 1,
+        ease: "none"
+      }
+    })
+    .to("[team-image]", {
+      opacity: "0",
+      stagger: {
+        each: 2,
+        from: "start"
+      }
+    });
   //SERVICES
   //services image enlarge
   gsap
