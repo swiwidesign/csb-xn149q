@@ -26,6 +26,25 @@ window.addEventListener("DOMContentLoaded", (event) => {
   gsap.matchMediaRefresh();
 
   // GENERAL CODE
+  //menu heading letterspacing
+  const menuButton = document.querySelector(".menu-button");
+  const navItems = document.querySelectorAll(".heading-huge.is-nav");
+
+  menuButton.addEventListener("click", function () {
+    // Toggle the active class on the nav items
+    navItems.forEach((item) => item.classList.toggle("active"));
+
+    // Define the animation timeline
+    const tl = gsap.timeline({ delay: 0 });
+
+    // Add the animation to the timeline
+    tl.from(".heading-huge.is-nav.active", {
+      letterSpacing: "0.75em",
+      duration: 0.6,
+      ease: "ease"
+    });
+  });
+  //parallax
   gsap
     .matchMedia()
     .add(
@@ -75,7 +94,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
   gsap.set("[landingintro]", { autoAlpha: 1 });
   let tlintro = gsap
     .timeline({
-      delay: 1,
+      delay: 1.25,
       ease: Power4.easeInOut
     })
     .from(
