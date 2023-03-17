@@ -1,11 +1,11 @@
 window.addEventListener("DOMContentLoaded", (event) => {
-  // lenis
+  // LENIS
 
   const lenis = new Lenis({
     duration: 1.2,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // https://www.desmos.com/calculator/brs54l4xou
-    orientation: "vertical", // vertical, horizontal
-    gestureOrientation: "vertical", // vertical, horizontal, both
+    orientation: "vertical",
+    gestureOrientation: "vertical",
     smoothWheel: true,
     wheelMultiplier: 1,
     smoothTouch: false,
@@ -21,16 +21,17 @@ window.addEventListener("DOMContentLoaded", (event) => {
   requestAnimationFrame(raf);
 
   gsap.registerPlugin(ScrollTrigger);
+
   //MATCHMEDIA
   gsap.matchMediaRefresh();
-  // GENERAL CODE
-  // apply parallax effect to any element with a data-speed attribute
 
+  // GENERAL CODE
   gsap
     .matchMedia()
     .add(
       "(min-width: 992px) and (prefers-reduced-motion: no-preference)",
       () => {
+        // apply parallax effect to any element with a data-speed attribute
         gsap.utils.toArray("[data-speed]").forEach((el) => {
           gsap.to(el, {
             y: function () {
@@ -101,63 +102,84 @@ window.addEventListener("DOMContentLoaded", (event) => {
       ease: Power4.easeInOut
     })
     .to(".subhero_image-wrapper", {
-      yPercent: -10,
+      yPercent: -25,
       duration: 0.6
     });
   //LANDING
-  //landing intro scroll
-  let tlintroscroll = gsap
-    .timeline({
-      scrollTrigger: {
-        trigger: '[tlintroscroll="trigger"]',
-        start: "top top",
-        end: "bottom bottom",
-        scrub: 2
-      }
-    })
-    .to(lptext, {
-      yPercent: 100
-    })
-    .to(
-      ".image-100.is-1",
-      {
-        xPercent: -150,
-        yPercent: -40,
-        scale: 0.8,
-        rotation: 0
-      },
-      "<25%"
-    )
-    .to(
-      ".image-100.is-2",
-      {
-        xPercent: 150,
-        yPercent: 15,
-        height: "75%",
-        scale: 0.8,
-        rotation: 0
-      },
-      "<25%"
-    )
-    .to(
-      ".image-100.is-3",
-      {
-        xPercent: -120,
-        yPercent: 130,
-        height: "50%",
-        scale: 0.8,
-        rotation: 0
-      },
-      "<25%"
-    )
-    .to(
-      ".image-100.is-4",
-      {
-        xPercent: 15,
-        rotation: 0
-      },
-      "<15%"
-    );
+  gsap.matchMedia().add("(min-width: 992px)", () => {
+    //landing intro scroll DESKTOP
+    let tlintroscroll = gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: '[tlintroscroll="trigger"]',
+          start: "top top",
+          end: "bottom bottom",
+          scrub: 2,
+          ease: "none"
+        }
+      })
+      .to(lptext, {
+        yPercent: 100
+      })
+      .to(
+        ".image-100.is-1",
+        {
+          xPercent: -110,
+          yPercent: -40,
+          scale: 0.8,
+          rotation: 0
+        },
+        "<25%"
+      )
+      .to(
+        ".image-100.is-2",
+        {
+          xPercent: 150,
+          yPercent: 15,
+          height: "75%",
+          scale: 0.8,
+          rotation: 0
+        },
+        "<25%"
+      )
+      .to(
+        ".image-100.is-3",
+        {
+          xPercent: -150,
+          yPercent: 130,
+          height: "50%",
+          scale: 0.8,
+          rotation: 0
+        },
+        "<25%"
+      )
+      .to(
+        ".image-100.is-4",
+        {
+          xPercent: 15,
+          rotation: 0
+        },
+        "<15%"
+      );
+  });
+  gsap.matchMedia().add("(max-width: 991px)", () => {
+    //landing intro scroll MOBILE TABLET
+    let tlintroscroll = gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: '[tlintroscroll="trigger"]',
+          start: "top top",
+          end: "bottom bottom",
+          scrub: true,
+          ease: "none"
+        }
+      })
+      .set("[hero-images]", {
+        delay: 0.5,
+        opacity: 0,
+        stagger: { each: 1, from: "end" }
+      });
+  });
 
   //landing services image change
   let childTriggers = $(".sticky-track").find(".services_text-wrapper");
@@ -176,7 +198,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
       trigger: $(this),
       start: "top center",
       end: "bottom center",
-      fastScrollEnd: true,
       invalidateOnRefresh: true,
       onToggle: (isActive) => {
         if (isActive) {
@@ -192,10 +213,9 @@ window.addEventListener("DOMContentLoaded", (event) => {
         trigger: "[enlarge-trigger]",
         start: "bottom top",
         endTrigger: "[enlarge-endtrigger]",
-        end: "top 150%",
+        end: "top bottom",
         scrub: 2,
         ease: "none",
-        fastScrollEnd: true,
         invalidateOnRefresh: true
       }
     })
@@ -213,8 +233,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
     let tlteam = gsap.timeline({
       scrollTrigger: {
         trigger: childTrigger,
-        start: "center bottom",
-        end: "top top",
+        start: "top 80%",
+        end: "top 10%",
         scrub: true
       }
     });

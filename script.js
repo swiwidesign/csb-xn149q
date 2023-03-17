@@ -198,7 +198,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
       trigger: $(this),
       start: "top center",
       end: "bottom center",
-      fastScrollEnd: true,
       invalidateOnRefresh: true,
       onToggle: (isActive) => {
         if (isActive) {
@@ -217,7 +216,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
         end: "top bottom",
         scrub: 2,
         ease: "none",
-        fastScrollEnd: true,
         invalidateOnRefresh: true
       }
     })
