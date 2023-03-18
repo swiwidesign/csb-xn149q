@@ -131,10 +131,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
       .timeline({
         scrollTrigger: {
           trigger: '[tlintroscroll="trigger"]',
-          start: "top top",
+          start: "10% top",
           end: "bottom bottom",
-          scrub: 2,
-          ease: "none"
+          toggleActions: "play none reverse none",
+          ease: "none",
+          markers: true
         }
       })
       .to(lptext, {
