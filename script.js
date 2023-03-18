@@ -148,7 +148,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
           yPercent: -40,
           scale: 0.8,
           rotation: 0,
-          duration: 0.6
+          duration: 0.8
         },
         "<25%"
       )
@@ -181,7 +181,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         {
           xPercent: 15,
           rotation: 0,
-          duration: 0.6
+          duration: 0.8
         },
         "<15%"
       );
