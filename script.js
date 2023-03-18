@@ -134,8 +134,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
           start: "10% top",
           end: "bottom 90%",
           toggleActions: "play none reverse none",
-          ease: "none",
-          markers: true
+          ease: "none"
         }
       })
       .to(lptext, {
