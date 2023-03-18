@@ -138,7 +138,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
         }
       })
       .to(lptext, {
-        yPercent: 100
+        yPercent: 100,
+        duration: 0.75
       })
       .to(
         ".image-100.is-1",
@@ -146,7 +147,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
           xPercent: -110,
           yPercent: -40,
           scale: 0.8,
-          rotation: 0
+          rotation: 0,
+          duration: 0.75
         },
         "<25%"
       )
@@ -157,7 +159,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
           yPercent: 15,
           height: "75%",
           scale: 0.8,
-          rotation: 0
+          rotation: 0,
+          duration: 0.75
         },
         "<25%"
       )
@@ -168,7 +171,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
           yPercent: 130,
           height: "50%",
           scale: 0.8,
-          rotation: 0
+          rotation: 0,
+          duration: 0.75
         },
         "<25%"
       )
@@ -176,7 +180,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
         ".image-100.is-4",
         {
           xPercent: 15,
-          rotation: 0
+          rotation: 0,
+          duration: 0.75
         },
         "<15%"
       );
