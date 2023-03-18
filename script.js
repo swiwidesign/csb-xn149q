@@ -132,7 +132,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         scrollTrigger: {
           trigger: '[tlintroscroll="trigger"]',
           start: "10% top",
-          end: "bottom bottom",
+          end: "bottom 90%",
           toggleActions: "play none reverse none",
           ease: "none",
           markers: true
