@@ -238,7 +238,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         start: "bottom top",
         endTrigger: "[enlarge-endtrigger]",
         end: "top bottom",
-        scrub: 2,
+        scrub: true,
         ease: "none",
         invalidateOnRefresh: true
       }
