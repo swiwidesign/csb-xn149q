@@ -239,8 +239,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         endTrigger: "[enlarge-endtrigger]",
         end: "top bottom",
         scrub: true,
-        ease: "none",
-        invalidateOnRefresh: true
+        ease: "none"
       }
     })
     .to("[enlarge]", { width: "100%", height: "100vh" })
