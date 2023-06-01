@@ -1,24 +1,49 @@
 window.addEventListener("DOMContentLoaded", (event) => {
   // LENIS
+  "use strict";
 
-  const lenis = new Lenis({
-    duration: 1.2,
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // https://www.desmos.com/calculator/brs54l4xou
-    orientation: "vertical",
-    gestureOrientation: "vertical",
-    smoothWheel: true,
-    wheelMultiplier: 1,
-    smoothTouch: false,
-    touchMultiplier: 2,
-    infinite: false
-  });
+  if (Webflow.env("editor") === undefined) {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      lerp: 0.1,
+      wheelMultiplier: 0.7,
+      infinite: false,
+      gestureOrientation: "vertical",
+      normalizeWheel: false,
+      smoothTouch: false
+    });
 
-  function raf(time) {
-    lenis.raf(time);
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
     requestAnimationFrame(raf);
-  }
 
-  requestAnimationFrame(raf);
+    $("[data-lenis-start]").on("click", function () {
+      lenis.start();
+    });
+    $("[data-lenis-stop]").on("click", function () {
+      lenis.stop();
+    });
+    $("[data-lenis-toggle]").on("click", function () {
+      $(this).toggleClass("stop-scroll");
+      if ($(this).hasClass("stop-scroll")) {
+        lenis.stop();
+      } else {
+        lenis.start();
+      }
+    });
+
+    function connectToScrollTrigger() {
+      lenis.on("scroll", ScrollTrigger.update);
+      gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+      });
+    }
+    // Uncomment this if using GSAP ScrollTrigger
+    connectToScrollTrigger();
+  }
 
   gsap.registerPlugin(ScrollTrigger);
 
@@ -103,12 +128,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
         yPercent: -100,
         duration: 0.4
       },
-      "<50%"
+      "<"
     )
     .from(lpImage, {
       rotation: 0,
       duration: 0.8,
-      delay: 0.2,
       ease: "expo.inOut"
     });
 
@@ -200,7 +224,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
           ease: "none"
         }
       })
-      .set("[hero-images]", {
+      .to("[hero-images]", {
         delay: 0.5,
         opacity: 0,
         stagger: { each: 1, from: "end" }
@@ -245,7 +269,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
       }
     })
     .to("[enlarge]", { width: "100%", height: "100vh" })
-    //jumfix with gsap set
+    //jumpfix with gsap set
     .set("[enlarge] .image_vertical-height", { paddingTop: "150%" }, "<")
     .to("[enlarge] .image_vertical-height", { paddingTop: "100vh" }, "<");
   //SALON

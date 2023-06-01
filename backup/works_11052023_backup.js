@@ -1,6 +1,5 @@
 window.addEventListener("DOMContentLoaded", (event) => {
   // LENIS
-  "use strict";
 
   if (Webflow.env("editor") === undefined) {
     const lenis = new Lenis({
@@ -128,11 +127,12 @@ window.addEventListener("DOMContentLoaded", (event) => {
         yPercent: -100,
         duration: 0.4
       },
-      "<"
+      "<50%"
     )
     .from(lpImage, {
       rotation: 0,
       duration: 0.8,
+      delay: 0.2,
       ease: "expo.inOut"
     });
 
@@ -224,7 +224,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
           ease: "none"
         }
       })
-      .to("[hero-images]", {
+      .set("[hero-images]", {
         delay: 0.5,
         opacity: 0,
         stagger: { each: 1, from: "end" }
@@ -269,7 +269,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
       }
     })
     .to("[enlarge]", { width: "100%", height: "100vh" })
-    //jumpfix with gsap set
+    //jumfix with gsap set
     .set("[enlarge] .image_vertical-height", { paddingTop: "150%" }, "<")
     .to("[enlarge] .image_vertical-height", { paddingTop: "100vh" }, "<");
   //SALON
