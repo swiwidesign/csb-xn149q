@@ -285,10 +285,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
         scrub: true
       }
     });
-    tlteam.set(childImages, {
+    tlteam.to(childImages, {
       delay: 1,
       opacity: 1,
-      stagger: 0.4
+      stagger: 0.4,
+      ease: "none"
     });
   });
 
