@@ -50,7 +50,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
   //MATCHMEDIA
   gsap.matchMediaRefresh();
 
-  // GENERAL CODE
+  // GENERAL CODES
   //menu heading letterspacing
   const menuButton = document.querySelector(".menu-button");
   const navItems = document.querySelectorAll(".heading-huge.is-nav");
